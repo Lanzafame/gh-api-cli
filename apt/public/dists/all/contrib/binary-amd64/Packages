@@ -5,6 +5,24 @@ Installed-Size: 9.0 kB
 Maintainer: mh-cbon <mh-cbon@users.noreply.github.com>
 Architecture: amd64
 Source: gh-api-cli
+Version: 3.0.0
+Filename: pool/contrib/g/gh-api-cli/gh-api-cli-3.0.0_amd64.deb
+Size: 2143112
+MD5sum: 1605ba6743c8f7b66cff552cacbdf508
+SHA1: 15b8e26473fc50227e5e2d7fbe2c747b6a702a5b
+SHA256: 162fd11fb3fd302e950e8f72405bed58bb6a61734aa352790be70ae558819312
+SHA512: dafc0119860d1fff135d284db8e3cce5fd5479e2533a999e8ed7196b220f2595ea0044079a7826e9135d5e121aa0315e7dc0ce53ed83b411dd51894c3295249c
+Description: Command line client for github api
+Package-Type: deb
+Homepage: http://github.com/mh-cbon/gh-api-cli
+
+Package: gh-api-cli
+Priority: extra
+Section: unknown
+Installed-Size: 9.0 kB
+Maintainer: mh-cbon <mh-cbon@users.noreply.github.com>
+Architecture: amd64
+Source: gh-api-cli
 Version: 2.0.6
 Filename: pool/contrib/g/gh-api-cli/gh-api-cli-2.0.6_amd64.deb
 Size: 2137660
@@ -103,8 +121,8 @@ SHA1: c8996a6c84ae8f7751a543f0d39ec238f26caa95
 SHA256: 35ac61036ad61d243866dbb6317ce9003a70b7063fff7509bd06b4b20dfc09ab
 SHA512: 5c783c4b8653941d98a0168e4ce8e7f89b7ae91d83da1d1b4a7390a4486c617b7b450a4f68085df538de80168fdeea994b7efecb40560c3709b03a8cbd1bc22b
 Description: Command line client for github api
-Homepage: http://github.com/mh-cbon/gh-api-cli
 Package-Type: deb
+Homepage: http://github.com/mh-cbon/gh-api-cli
 
 Package: gh-api-cli
 Priority: extra
@@ -121,8 +139,8 @@ SHA1: 5eca7daf574ae9e905ef88c9b8329d666317c152
 SHA256: 22e981c4e577febf1ae9f3b30647bdb3e70c722f36b84f4d033fb5e85d6f2e60
 SHA512: 1b017478125462e305a2a774c2a78fbaecad296d257950dc1206fa411cbae41d97c494fe69d227474b5ce22569d2ce01eb92c20bfa65cd5552f8e6b2d84e3675
 Description: Command line client for github api
-Package-Type: deb
 Homepage: http://github.com/mh-cbon/gh-api-cli
+Package-Type: deb
 
 Package: gh-api-cli
 Priority: extra
@@ -139,8 +157,8 @@ SHA1: 233a322d84b87f047a731e5b322b6485c7cf3b2f
 SHA256: 5586c9e33263205a39ece1425fbc1b81e56c0ffb3a587fcaf14644d697c100cf
 SHA512: 076543897b321816484fefebdb1ba267ded5cf3e140340775e276f141a89cc3dff26b8fda07644a9e425e90c76f9b5b962c7c95f26c98bc83529ff9b0a6c7b74
 Description: Command line client for github api
-Homepage: http://github.com/mh-cbon/gh-api-cli
 Package-Type: deb
+Homepage: http://github.com/mh-cbon/gh-api-cli
 
 Package: gh-api-cli
 Priority: extra
@@ -157,8 +175,8 @@ SHA1: 9ba3e972d68ba413bd621d346c471e5f66e8e007
 SHA256: 2a85860bfa04909ac33ec580081152f045b531ea17ffa8bc9c4caf80c88010bd
 SHA512: 0ffcdf200bb735decce686ab4855a7c769df1134a607e3c2e2a408d0b5bf0afdab4c6b40de8a4db93b8efb0c2b3bfc4fff731931fca89af4082e56a9376096bf
 Description: Command line client for github api
-Package-Type: deb
 Homepage: http://github.com/mh-cbon/gh-api-cli
+Package-Type: deb
 
 Package: gh-api-cli
 Priority: extra
@@ -211,6 +229,6 @@ SHA1: e85221bee35d651610f251462e78f5aa291cf844
 SHA256: 2264e4e0d552588d399139c516722ba597b23d04bee22d46bc735fae295edfab
 SHA512: 030204d74ccd2f044310a5117509ae3b2a6838efcf276dda872a349fd7cd1fb133e8d150a83f2626719f491fcf4c591e41d7a131f5502c8955f23504df2ad832
 Description: Command line client for github api
-Package-Type: deb
 Homepage: http://github.com/mh-cbon/gh-api-cli
+Package-Type: deb
 
