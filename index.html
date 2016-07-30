@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Gh-api-cli by mh-cbon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Gh-api-cli</h1>
+      <h2 class="project-tagline">Command line client for github api</h2>
+      <a href="https://github.com/mh-cbon/gh-api-cli" class="btn">View on GitHub</a>
+      <a href="https://github.com/mh-cbon/gh-api-cli/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/mh-cbon/gh-api-cli/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="gh-api-cli" class="anchor" href="#gh-api-cli" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>gh-api-cli</h1>
+
+<p>Command line client for github api</p>
+
+<p>This tool is part of the <a href="https://github.com/mh-cbon/go-github-release">go-github-release workflow</a></p>
+
+<h1>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Install</h1>
+
+<p>Pick an msi package <a href="https://github.com/mh-cbon/gh-api-cli/releases">here</a>!</p>
+
+<p><strong>chocolatey</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>choco install gh-api-cli</pre></div>
+
+<p><strong>deb/ubuntu/rpm repositories</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>wget -O - https://raw.githubusercontent.com/mh-cbon/latest/master/source.sh \
+<span class="pl-k">|</span> GH=mh-cbon/gh-api-cli sh -xe
+<span class="pl-c"># or</span>
+curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/source.sh \
+<span class="pl-k">|</span> GH=mh-cbon/gh-api-cli sh -xe</pre></div>
+
+<p><strong>deb/ubuntu/rpm package</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>curl -L https://raw.githubusercontent.com/mh-cbon/latest/master/install.sh \
+<span class="pl-k">|</span> GH=mh-cbon/gh-api-cli sh -xe
+<span class="pl-c"># or</span>
+wget -q -O - --no-check-certificate \
+https://raw.githubusercontent.com/mh-cbon/latest/master/install.sh \
+<span class="pl-k">|</span> GH=mh-cbon/gh-api-cli sh -xe</pre></div>
+
+<p><strong>go</strong></p>
+
+<div class="highlight highlight-source-shell"><pre>mkdir -p <span class="pl-smi">$GOPATH</span>/src/github.com/mh-cbon
+<span class="pl-c1">cd</span> <span class="pl-smi">$GOPATH</span>/src/github.com/mh-cbon
+git clone https://github.com/mh-cbon/gh-api-cli.git
+<span class="pl-c1">cd</span> gh-api-cli
+glide install
+go install</pre></div>
+
+<h1>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h1>
+
+<pre><code>NAME:
+   gh-api-cli - Github api command line client
+
+USAGE:
+   gh-api-cli &lt;cmd&gt; &lt;options&gt;
+
+VERSION:
+   0.0.0
+
+COMMANDS:
+     add-auth                 Add a new authorization
+     list-auth                List authorizations
+     rm-auth                  Remove an authorization
+     get-auth                 Get token from a locally saved authorization
+     create-release           Create a new release
+     rm-release               Delete a release
+     upload-release-asset     Upload assets to a release
+     dl-assets                Download assets
+     rm-assets                Delete assets
+
+GLOBAL OPTIONS:
+   --help, -h       show help
+   --version, -v    print the version
+</code></pre>
+
+<h4>
+<a id="add-auth" class="anchor" href="#add-auth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>add-auth</h4>
+
+<pre><code>NAME:
+   gh-api-cli add-auth - Add a new authorization
+
+USAGE:
+   gh-api-cli add-auth [command options] [arguments...]
+
+OPTIONS:
+   --username value, -u value    Github username
+   --password value, -p value    Github password
+   --name value, -n value        Name of the authorization to add
+   --rights value, -r value      Permissions to set
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli add-auth -n test -r user -r repo # will prompt for username/password
+  gh-api-cli add-auth -n test -r user -u your -p pwd # won t prompt unless you have 2F ident on
+  gh-api-cli add-auth -n test -r user,repo -u your -p pwd
+</code></pre>
+
+<p>Where <code>rights</code> contains some of :</p>
+
+<pre><code>user              user:email
+user:follow       public_repo
+repo              repo_deployment
+repo:status       delete_repo
+notifications     gist
+read:repo_hook    write:repo_hook
+admin:repo_hook   admin:org_hook
+admin             read:org
+write:org         admin:org
+read:public_key   write:public_key
+admin:public_key  read:gpg_key
+write:gpg_key     admin:gpg_key
+</code></pre>
+
+<h4>
+<a id="list-auth" class="anchor" href="#list-auth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>list-auth</h4>
+
+<pre><code>NAME:
+   gh-api-cli list-auth - List authorizations
+
+USAGE:
+   gh-api-cli list-auth [command options] [arguments...]
+
+OPTIONS:
+   --username value, -u value   Github username
+   --password value, -p value   Github password
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli list-auth -n test # will prompt for username/password
+  gh-api-cli list-auth -n test -u your -p pwd # won t prompt unless you have 2F ident on
+</code></pre>
+
+<h4>
+<a id="rm-auth" class="anchor" href="#rm-auth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>rm-auth</h4>
+
+<pre><code>NAME:
+   gh-api-cli rm-auth - Remove an existing authorization
+
+USAGE:
+   gh-api-cli rm-auth [command options] [arguments...]
+
+OPTIONS:
+   --username value, -u value   Github username
+   --password value, -p value   Github password
+   --name value, -n value       Name of the authorization to delete
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli rm-auth -n test # will prompt for username/password
+  gh-api-cli rm-auth -n test -u your -p pwd # won t prompt unless you have 2F ident on
+</code></pre>
+
+<h4>
+<a id="get-auth" class="anchor" href="#get-auth" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>get-auth</h4>
+
+<pre><code>NAME:
+   gh-api-cli get-auth - Get token from a locally saved authorization
+
+USAGE:
+   gh-api-cli get-auth [command options] [arguments...]
+
+OPTIONS:
+   --name value, -n value       Name of the authorization to look for
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli get-auth -n test
+</code></pre>
+
+<h4>
+<a id="create-release" class="anchor" href="#create-release" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>create-release</h4>
+
+<pre><code>NAME:
+   gh-api-cli create-release - Create a release
+
+USAGE:
+   gh-api-cli create-release [command options] [arguments...]
+
+OPTIONS:
+   --name value, n value           Name of the locally saved authentication.
+   --token value, t value          Personal access token authentication.
+   --owner value, -o value         Repo owner
+   --repository value, -r value    Repo name
+   --ver value                     Version name
+   --author value, -a value        Release author name
+   --email value, -e value         Release author email
+   --draft value, -d value         Make a draft release, value=yes|1|true|no|0|false
+   --changelog cmd, -c cmd         A command to generate body content of the release
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli create-release -n test -o mh-cbon -r gh-api-cli --ver 0.0.1
+</code></pre>
+
+<h4>
+<a id="rm-release" class="anchor" href="#rm-release" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>rm-release</h4>
+
+<pre><code>NAME:
+   gh-api-cli rm-release - Delete a release
+
+USAGE:
+   gh-api-cli rm-release [command options] [arguments...]
+
+OPTIONS:
+   --name value, n value           Name of the locally saved authentication.
+   --token value, t value          Personal access token authentication.
+   --owner value, -o value         Repo owner
+   --repository value, -r value    Repo name
+   --ver value                     Version name
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli create-release -n test -o mh-cbon -r gh-api-cli --ver 0.0.1
+</code></pre>
+
+<h4>
+<a id="upload-release-asset" class="anchor" href="#upload-release-asset" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>upload-release-asset</h4>
+
+<pre><code>NAME:
+   gh-api-cli upload-release-asset - Upload assets to a release
+
+USAGE:
+   gh-api-cli upload-release-asset [command options] [arguments...]
+
+OPTIONS:
+   --name value, n value           Name of the locally saved authentication.
+   --token value, t value          Personal access token authentication.
+   --glob value, -g value          Glob pattern of files to upload
+   --owner value, -o value         Repo owner
+   --repository value, -r value    Repo name
+   --ver value                     Version name
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli upload-release-asset -n test -g README.md -o mh-cbon -r gh-api-cli --ver 0.0.1
+</code></pre>
+
+<h4>
+<a id="rm-assets" class="anchor" href="#rm-assets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>rm-assets</h4>
+
+<pre><code>NAME:
+   gh-api-cli rm-assets - Delete assets of a release
+
+USAGE:
+   gh-api-cli rm-assets [command options] [arguments...]
+
+OPTIONS:
+   --name value, n value           Name of the locally saved authentication.
+   --token value, t value          Personal access token authentication.
+   --glob value, -g value          Glob pattern of files to upload
+   --owner value, -o value         Repo owner
+   --repository value, -r value    Repo name
+   --ver value                     Version name
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli upload-release-asset -n test -g README.md -o mh-cbon -r gh-api-cli --ver 0.0.1
+</code></pre>
+
+<h4>
+<a id="dl-assets" class="anchor" href="#dl-assets" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>dl-assets</h4>
+
+<pre><code>NAME:
+   gh-api-cli dl-assets - Download assets
+
+USAGE:
+   gh-api-cli dl-assets [command options] [arguments...]
+
+OPTIONS:
+   --name value, n value           Name of the locally saved authentication.
+   --token value, t value          Personal access token authentication.
+   --owner value, -o value         Repo owner
+   --repository value, -r value    Repo name
+   --glob value, -g value          A glob to match files to download.
+                                   It resolves to a regexp like '(i?)^glob$'.
+                                   Stars '*' are replace by '.+'.
+   --skip-prerelease yes|no        if yes, skips pre-releases from the selection.
+   --version constraint            A version constraint,
+                                   Special value 'latest' is acceptable.
+   --out value                     A formatted string to write files.
+                                   It can contain token such as
+                                   %f: full filename
+                                   %o: repository owner
+                                   %r: repository name
+                                   %e: file extension, minus dot prefix, detected JIT
+                                   %s: target system (windows, darwin, linux), detected JIT
+                                   %a: architecture (amd64, 386), detected JIT
+                                   %v: version the asset is attached to
+</code></pre>
+
+<pre><code>EXAMPLE
+  gh-api-cli dl-assets -o mh-cbon -r gh-api-cli --ver 0.0.1
+  gh-api-cli dl-assets -o mh-cbon -r gh-api-cli --ver 0.0.1 --out dl/%f
+  gh-api-cli dl-assets -o mh-cbon -r gh-api-cli --ver 0.0.1 --out dl/%f -g '*amd64*deb'
+  gh-api-cli dl-assets -o mh-cbon -r gh-api-cli --ver latest --out dl/%s/%r.%v-%a.%e
+  gh-api-cli dl-assets -o mh-cbon -r gh-api-cli --out "dl/%s/%r-%v-%a.%e" --ver "&gt;0.0.10"
+</code></pre>
+
+<h1>
+<a id="notes" class="anchor" href="#notes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes</h1>
+
+<p>When you <code>add, remove, list</code> authorizations, personal access token authentication is not permitted, <a href="https://developer.github.com/v3/oauth_authorizations/#deprecation-notice">see this</a></p>
+
+<h1>
+<a id="testing" class="anchor" href="#testing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Testing</h1>
+
+<div class="highlight highlight-source-shell"><pre> (USER=xxx PWRD=yyy ./test.sh <span class="pl-k">|</span> grep <span class="pl-s"><span class="pl-pds">"</span>OK, ALL FINE<span class="pl-pds">"</span></span>) <span class="pl-k">||</span> (<span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span><span class="pl-pds">"</span></span> <span class="pl-k">&amp;&amp;</span> <span class="pl-c1">echo</span> <span class="pl-s"><span class="pl-pds">"</span>beep boop failed<span class="pl-pds">"</span></span>)</pre></div>
+
+<h1>
+<a id="todo" class="anchor" href="#todo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Todo</h1>
+
+<ul>
+<li>add a command to clean up old gh releases,
+something that would help to keep only N most recent releases for each major version.</li>
+</ul>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/mh-cbon/gh-api-cli">Gh-api-cli</a> is maintained by <a href="https://github.com/mh-cbon">mh-cbon</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
